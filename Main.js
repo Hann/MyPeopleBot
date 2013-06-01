@@ -7,3 +7,17 @@
  */
 
 http = require('http');
+
+http.createServer(function(req, res){
+  if (req.method === "POST" && req.url === "/bot"){
+    res.writeHead(200, { 'Content-Type' : 'Application/json'});
+    res.write('{ "jinsoo" : "zzang" }');
+    res.end();
+  }
+  else {
+    res.writeHead(200, { 'Content-Type' : 'Application/json'});
+    res.write('{"test" : "jinsoo"}');
+    res.end();
+  }
+
+}).listen(9999);
