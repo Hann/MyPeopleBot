@@ -7,15 +7,21 @@
  */
 
 http = require('http');
-
+querystring = require('querystring');
 http.createServer(function(req, res){
   if (req.method === "POST" && req.url === "/bot"){
-    console.log(req.body.action);
-    console.log(req.body.groupId);
-    console.log(res.body);
-    res.writeHead(200, { 'Content-Type' : 'Application/json'});
-    res.write('{ "jinsoo" : "zzang" }');
-    res.end();
+	var body = '';
+	req.on('data', function(data) {
+		body += data;
+	});
+	req.on('end', function() {
+            body = querystring.parse(body);
+	    console.log(body);
+	
+	    res.writeHead(200, { 'Content-Type' : 'Application/json'});
+	    res.write('{ "jinsoo" : "zzang" }');
+	    res.end();
+	});
   }
   else {
     res.writeHead(200, { 'Content-Type' : 'Application/json'});
