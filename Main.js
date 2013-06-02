@@ -7,25 +7,23 @@
  */
 
 http = require('http');
-querystring = require('querystring');
+parser = require('lib/parse');
+
 http.createServer(function(req, res){
   if (req.method === "POST" && req.url === "/bot"){
 	var body = '';
-	req.on('data', function(data) {
-		body += data;
-	});
+    req.on('data', function(data) {
+      body += data;
+    });
 	req.on('end', function() {
-            body = querystring.parse(body);
-	    console.log(body);
-	
-	    res.writeHead(200, { 'Content-Type' : 'Application/json'});
-	    res.write('{ "jinsoo" : "zzang" }');
-	    res.end();
+      res.writeHead(200, { 'Content-Type' : 'Application/json'});
+      parser.parse(data);
+      res.end();
 	});
   }
   else {
-    res.writeHead(200, { 'Content-Type' : 'Application/json'});
-    res.write('{"test" : "jinsoo"}');
+    res.writeHead(404, { 'Content-Type' : 'Application/json'});
+    res.write('{"Han Jin-Soo" : "ceo@hannjs.com"}');
     res.end();
   }
 
