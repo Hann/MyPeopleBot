@@ -17,7 +17,7 @@ http.createServer(function(req, res){
     });
 	req.on('end', function() {
       res.writeHead(200, { 'Content-Type' : 'Application/json'});
-      parser.parse(data);
+      parser.parse(body);
       res.end();
 	});
   }
