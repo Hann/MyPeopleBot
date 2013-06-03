@@ -7,7 +7,7 @@
  */
 
 http = require('http');
-parser = require('lib/parse');
+parser = require('./lib/parse');
 
 http.createServer(function(req, res){
   if (req.method === "POST" && req.url === "/bot"){
