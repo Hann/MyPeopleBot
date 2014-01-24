@@ -21,6 +21,9 @@ http.createServer(function(req, res) {
       parser.parse(body);
       res.end();
     });
+    req.on('error', function(err) {
+      console.log(err);
+    })
   }
   else {
     res.writeHead(404, { 'Content-Type': 'Application/json'});
