@@ -9,20 +9,20 @@
 http = require('http');
 parser = require('./lib/parse');
 
-http.createServer(function(req, res){
-  if (req.method === "POST" && req.url === "/bot"){
-	var body = '';
+http.createServer(function(req, res) {
+  if (req.method === 'POST' && req.url === '/bot') {
+    var body = '';
     req.on('data', function(data) {
       body += data;
     });
-	req.on('end', function() {
-      res.writeHead(200, { 'Content-Type' : 'Application/json'});
+    req.on('end', function() {
+      res.writeHead(200, { 'Content-Type': 'Application/json'});
       parser.parse(body);
       res.end();
-	});
+    });
   }
   else {
-    res.writeHead(404, { 'Content-Type' : 'Application/json'});
+    res.writeHead(404, { 'Content-Type': 'Application/json'});
     res.write('{"Han Jin-Soo" : "ceo@hannjs.com"}');
     res.end();
   }
