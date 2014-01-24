@@ -17,6 +17,7 @@ http.createServer(function(req, res) {
     });
     req.on('end', function() {
       res.writeHead(200, { 'Content-Type': 'Application/json'});
+      console.log('received a message');
       parser.parse(body);
       res.end();
     });
